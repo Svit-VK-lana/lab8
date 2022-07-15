@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Trivia!</title>
+    <script>
+            // TODO: Add code to check answers to questions
+
+            document.addEventListener('DOMContentLoaded', function loaded() {
+
+                let btns = document.querySelectorAll('.multiple');
+                let checkBtn = document.querySelector('#check');
+                let ansM = false;
+                let ansF = false;
+                for(let btn of btns){
+                    btn.addEventListener('click', event => choice(event));
+                }
+                checkBtn.addEventListener('click', free);
+                function choice(event) {
+                    if(ansM == true) {
+                        return;
+                    }
+                    const btnChoice = event.target
+                    if(btnChoice.classList.contains('correct')) {
+                        btnChoice.style.backgroundColor= 'green';
+                        document.querySelector('#feedback1').innerHTML= 'Correct!';
+                    }
+                    else{
+                        btnChoice.style.backgroundColor= 'red';
+                        document.querySelector('#feedback1').innerHTML= 'Incorrect!';
+                    }
+                    ansM = true;
+                }
+                function free(){
+                    if(ansF == true) {
+                        return;
+                    }
+                    console.log('yes');
+                    let answerInput = document.querySelector('#freeAnswer');
+                    console.log(answerInput);
+                    let answer= answerInput.value;
+                    console.log(answer);
+                    if(answer == 'Russia') {
+                        answerInput.style.backgroundColor= 'green';
+                        document.querySelector('#feedback2').innerHTML= 'Correct!';
+                    }
+                    else{
+                        answerInput.style.backgroundColor= 'red';
+                        document.querySelector('#feedback2').innerHTML= 'Incorrect!';
+                    }
+                    ansF = true;
+                }
+        })
+    </script>
+</head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3> What is the most likely outcome of the war in Ukraine in your opinion?
+                </h3>
+                <!-- TODO: Add multiple choice question here -->
+                <button class= "multiple incorrect">Putin will be hanged and the war will end</button>
+                <p><button class= "multiple incorrect">A revolution will start in Russia</button></p>
+                <p><button class= "multiple incorrect">The EU and the United States will force the Russians to stop the war in the status quo</button></p>
+                <button class= "multiple correct">The war will end with the complete victory of Ukraine and the liberation of all Ukrainian territories</button>
+                <p id= "feedback1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>Which country occupied Crimea in 2014? </h3>
+                <input id= "freeAnswer" type=""text" placeholder= "your answer"></input>
+                <button id= "check">Check Answer</button>
+                <p id= "feedback2"></p>
+            </div>
+        </div>
+    </body>
+</html>
